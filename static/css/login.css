@@ -1,0 +1,122 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* transition: 0.2s ease-in-out; */
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #ebf5fc;
+    scroll-behavior: smooth;
+}
+.msg {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    color: red;
+}
+.signin {
+    padding: 2em;
+    margin: 1em;
+    border-radius: 50px;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.1),
+                -6px -6px 20px rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.signin:hover {
+    box-shadow:inset 6px 6px 20px rgba(0, 0, 0, 0.1),
+               inset -6px -6px 20px rgba(255, 255, 255, 1);
+}
+.signin .input {
+    margin: 2rem;
+    width: 90%;
+    padding: 0;
+    position: relative;
+}
+.signin .input i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 20px;
+}
+.hidden {
+    /* display: none; */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: -1;
+}
+.show {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+    display: block;
+    z-index: 1;
+}
+input[type="text"], .signin input[type="password"] {
+    padding: 1em 1em;
+    border: none;
+    border-radius: 20px;
+    width: 88%;
+    outline: none;
+}
+/* .signin input:nth-of-type(2) {
+    margin-top: 1em;
+    margin-bottom: 5px;
+} */
+.signin h1 {
+    padding: 10px;
+    text-transform: uppercase;
+    background: linear-gradient(to left,#0F2259,#3258A6,#77ACF2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.signin input::placeholder {
+    text-align: left;
+}
+.signin .link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+}
+a {
+    text-decoration: none;
+}
+.signin .link a {
+    align-self: flex-start;
+    margin: 0 20px;
+}
+.signin .button {
+    margin: 2em;
+    background: cadetblue;
+    padding: 1em;
+    border-radius: 30px;
+    color: white;
+    border: none;
+}
+.signin .button:hover {
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+    background:#3258A6;
+    transition: transform 0.5s ease-in-out,
+                box-shadow 0.6s ease-in-out,
+                background 0.5s ease-in-out;
+}
+.signin .showpswd input[type="checkbox"] {
+    border: none;
+}
+.signin .showpswd {
+    margin: 2px 1em 1em 1em;
+    padding-right: 10px;
+    align-self: flex-end;
+    font-size: 0.8em;
+}

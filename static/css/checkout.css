@@ -1,0 +1,371 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #eee;
+}
+
+.detail {
+  height: 100%;
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #eee;
+  padding: 2em;
+}
+
+.shipping-detail {
+  width: 50%;
+  margin: 10px 30px 10px 0;
+}
+
+.address {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.inputs {
+  height: 50%;
+}
+
+.input {
+  margin: 10px;
+}
+
+.input input {
+  padding: 10px;
+  width: 100%;
+}
+
+.sec {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.sec input {
+  width: 45% !important;
+  margin: 10px 0;
+}
+
+.sec select {
+  height: 40px;
+  margin-top: 10px;
+}
+
+* {
+  border-radius: 5px;
+  border: none;
+  outline: none !important;
+}
+
+.sec .sel {
+  position: relative;
+  background: white;
+  margin: 10px 10px 10px 0;
+}
+
+.sec select {
+  line-height: 40px;
+  background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png) no-repeat #fff;
+  -webkit-appearance: none;
+}
+
+.sec .sel:first-child select {
+  background-position-x: 60px;
+  background-position-y: 10px;
+}
+
+.sec .sel:nth-child(2) select {
+  background-position-x: 75px;
+  background-position-y: 10px;
+}
+
+.sec select option {
+  padding: 10px;
+}
+
+.sel label {
+  position: absolute;
+  font-size: 10px;
+  left: 5px;
+  top: 5px;
+  color: gray;
+}
+
+.add {
+  position: relative;
+  background: #fff;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.add label {
+  position: absolute;
+  left: 10px;
+  top: 5px;
+  font-size: 10px;
+  opacity: 0;
+  color: gray;
+}
+
+.add input {
+  margin-top: 0px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.add:hover input {
+  margin-top: 15px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.add:hover label {
+  opacity: 1;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add:hover input::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add:hover input:-ms-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add:hover input::-ms-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add:hover input::placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add1 {
+  width: 50% !important;
+  margin-left: 10px;
+  -moz-appearance: none;
+}
+
+.add1 input {
+  width: 100% !important;
+}
+
+.button {
+  background: #2858b1;
+  color: white;
+  margin-left: auto;
+  margin-right: 10px;
+  padding: 10px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.button:hover {
+  cursor: pointer;
+  background: #1c3d7a;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.shipping-detail h1 {
+  display: inline;
+  background: #222;
+  padding: 5px 10px;
+  color: #eee;
+}
+
+.shipping-detail h1 span {
+  background: #eb7506;
+  padding: 0 5px;
+  color: #222;
+}
+
+.shipping-detail .path {
+  margin-top: 20px;
+}
+
+img {
+  height: 75px;
+  width: 75px;
+  border-radius: 10px;
+}
+
+.photo {
+  position: relative;
+}
+
+.photo p {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: gray;
+  color: white;
+  height: 20px;
+  width: 20px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.my-product {
+  height: 100%;
+  width: 50%;
+  background: #e8f3f6;
+  padding: 2em;
+}
+
+.sec1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.my-product * {
+  margin: 10px 0;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, 0.5)), to(rgba(0, 0, 0, 0)));
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+.sec2 input {
+  width: 100%;
+  background: yellow !important;
+  margin: 10px;
+}
+
+.sec2 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  margin: 0 10px;
+}
+
+.btn1 {
+  padding: 10px;
+  background: #2858b1;
+  color: white;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.btn1:hover {
+  cursor: pointer;
+  background: #1c3d7a;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.add2 {
+  position: relative;
+  background: #fff;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 0 0px;
+          flex: 1 0 0;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+
+.add2 label {
+  position: absolute;
+  left: 10px;
+  top: -10px;
+  font-size: 10px;
+  opacity: 0;
+  color: gray;
+}
+
+.add2 input {
+  margin-top: 0px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  width: 100%;
+}
+
+.add2:hover input {
+  margin-top: 15px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.add2:hover label {
+  opacity: 1;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add2:hover input::-webkit-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add2:hover input:-ms-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add2:hover input::-ms-input-placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.add2:hover input::placeholder {
+  opacity: 0;
+  -webkit-transition: opacity 0.4s ease-in-out;
+  transition: opacity 0.4s ease-in-out;
+}
+/*# sourceMappingURL=checkout.css.map */

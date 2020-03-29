@@ -1,0 +1,105 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ebf5fc;
+}
+.msg {
+    background: rgba(255, 0, 0, 0.2);
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    color: red;
+}
+.signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    padding: 2em;
+    margin: 1em;
+    border-radius: 50px;
+    box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.1),
+                -6px -6px 20px rgba(255, 255, 255, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.signup:hover {
+    box-shadow: inset 8px 8px 25px rgba(0, 0, 0, 0.1),
+                inset -8px -8px 25px rgba(255, 255, 255, 1);
+    transition: box-shadow 1s ease-in-out;
+}
+.signup h1 {
+    padding: 10px;
+    text-transform: uppercase;
+    background: linear-gradient(to left,#0F2259,#3258A6,#77ACF2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1em;
+}
+.signup .input:nth-of-type(1), .signup .input:nth-of-type(4) {
+    width: 90%;
+    display: flex;
+}
+.signup .input:nth-of-type(1) input, .signup .input:nth-of-type(4) input {
+    margin: 0 5px;
+}
+.signup .input {
+    margin: 0.5rem;
+    width: 90%;
+    padding: 0;
+    position: relative;
+}
+.signup .input i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 30px;
+}
+.hidden {
+    /* display: none; */
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+    z-index: -1;
+}
+.show {
+    opacity: 1;
+    transition: opacity 0.4s ease-in-out;
+    display: block;
+    z-index: 1;
+}
+input {
+    padding: 1em 1em;
+    border: none;
+    border-radius: 20px;
+    width: 100%;
+    outline: none;
+}
+.signup .button {
+    border: none;
+    margin: 2em;
+    background: cadetblue;
+    padding: 1em;
+    border-radius: 30px;
+    color: white;
+    text-decoration: none;
+}
+.signup .button:hover {
+    box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
+    background:#3258A6;
+    transition: transform 0.5s ease-in-out,
+                box-shadow 0.6s ease-in-out,
+                background 0.5s ease-in-out;
+}

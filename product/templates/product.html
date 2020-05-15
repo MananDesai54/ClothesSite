@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/product.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+</head>
+<body>
+    <p class="link"><a href="/">The Fashion Hub </a>&nbsp; > &nbsp;{{product.product_name}}</p>
+    <div class="product-detail">
+        <div class="image">
+            <div class="main-img">
+                <img src="{{product.img1.url}}" alt="p_{{product.product_number}}" alt="">
+            </div>
+            <div class="sample-img">
+                <img class="active" src="{{product.img1.url}}" alt="">
+                <img src="{{product.img2.url}}" alt="">
+                <img src="{{product.img3.url}}" alt="">
+                <img src="{{product.img4.url}}" alt="">
+                <img src="{{product.img5.url}}" alt="">
+            </div>
+        </div>
+        <div class="detail-item">
+            <div class="detail">
+            <h1 class="product-name">{{product.product_name}}</h1>
+            <p>By Raymond</p>
+            <div class="product-price">
+                <span class="dashed">₹{{product.price|add:1000}}</span>
+                <span class="normal">₹{{product.price}} RS. </span>
+                <select class="select-css" name="size" id="size">
+                    <option value="">IND</option>
+                    <option value="">USA</option>
+                    <option value="">CA</option>
+                    <option value="">AUS</option>
+                    <option value="">LON</option>
+                </select>
+            </div>
+            <div class="rating"> 
+                <p class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> </p>
+                <i class="fas fa-sort-down"></i>
+                    <span class="rate-num">10,000+ ratings | 1000+ answered questions</span>
+            </div>
+            <!-- <input type="color" name="" id=""> -->
+            <div class="qnsize">
+                <div class="size">
+                    <select class="select-css" name="size" id="size">
+                        <option value="">S</option>
+                        <option value="">M</option>
+                        <option value="">L</option>
+                        <option value="">XL</option>
+                        <option value="">XXL</option>
+                    </select>
+                </div>
+                <div class="quantity">
+                    <div class="minus">
+                        <a href="/shop/minus/{{product.product_name}}"><i class="fas fa-minus" id="minus"></i></a>
+                    </div>
+                    <div class="num">{{quantity1}}</div>
+                    <div class="plus">
+                        <a href="/shop/plus/{{product.product_name}}"><i class="fas fa-plus" id="plus"></i></a>
+                    </div>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+                <a href="/shop/cart/{{product.product_name}}" class="button">Buy Now</i></a>
+            {% else %}
+                <a href="/login" class="button">Buy Now <i class="fas fa-shopping-cart"></i></a>
+            {% endif %}
+            <div class="offers">
+                <p>Special offers <i class="fas fa-tags"></i></p>
+                <p>Flat 20% off upto 200RS. on order above 1000</p>
+                <p>Flat 50% off upto 100RS. on using Axis bank payment method</p>
+            </div>
+            <div class="facilities">
+                <p>Pay on Delivery <i class="fas fa-hand-holding-usd"></i></p>
+                <p>10 Days Refundable <i class="fas fa-undo-alt"></i></p>
+                <p>Free Shipping <i class="fas fa-truck"></i></p>
+            </div>
+            <div class="details">
+                <h2>Product Details : </h2>
+                <p>
+                    Our Aromatherapy Essential Oil Diffuser & Humidifer™ looks like a frozen firework and will put any other diffuser to shame! A changing array of colors as its LED lights shift through 7 mesmerizing colors providing hours of selfless relaxation. Holds up to 1L of water that lasts 4-8 hours before Waterless Automatic Shut Off occurs, but you can set a 1-2hr timer. Feel free to add oils, and start with just a few drops.</p> 
+
+                <p>Relaxing & Soothing For Better Sleep 😴</p> 
+                <p>
+                    If restful sleep is the goal, try diffusing relaxing lavender, Roman chamomile, spikenard, neroli, mandarin or sweet marjoram in the bedroom for 15 minutes before bedtime. Some diffusers are equipped with automatic settings that can turn off the diffuser after 20 minutes or can deliver short bursts of diffusion at intervals throughout the night.
+
+                    During times of colds and flu, try diffusing Oils like thyme, eucalyptus, rosemary, manuka or ravintsara. Cinnamon and clove are excellent for prevention, and smell lovely with a bit of orange added. Lemongrass, tea tree, eucalyptus, oregano and juniper are specific for air purification, and can also help to clear the air of the smell of mildew.
+                </p>
+            </div>
+            
+            <div class="buttons">
+                {% if user.is_authenticated %}
+                    <a href="/shop/cart/{{product.product_name}}" class="button btn">Add To Cart <i class="fas fa-shopping-cart"></i></a>
+                    <a href="/shop/wishlist/{{product.product_name}}" class="button btn">Add To WishList <i class="fas fa-clipboard-list"></i></a>
+                {% else %}
+                    <a href="/login" class="button">Add To Cart <i class="fas fa-shopping-cart"></i></a>
+                    <a href="/login" class="button">Add To WishList <i class="fas fa-clipboard-list"></i></a>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+    </div>
+    <h1 class="more-title">More Products</h1>
+    <div class="more-products">
+        {% for product1 in products %}
+            {% if product1.product_name == product.product_name %}
+            {% else %}
+            <div class="more">
+                <a href="/shop/{{product1.product_name}}"><img src="{{product1.img1.url}}" alt=""></a>
+                <h4><a href="/shop/{{product1.product_name}}">{{product1.product_name}}</a></h4>
+                <p class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+                <p>₹{{product1.price}}-₹{{product1.price|add:1000}}</p>
+            </div>
+            {% endif %}
+        {% endfor %}
+        <!-- <div class="more">
+            <img src="{% static 'img/all.jpg' %}" alt="">
+            <h4>Hello World</h4>
+            <p class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+            <p>₹2000-₹5000</p>
+        </div>
+        <div class="more"> 
+            <img src="{% static 'img/all.jpg' %}" alt="">
+            <h4>Hello World</h4>
+            <p class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+            <p>₹2000-₹5000</p>
+        </div>
+        <div class="more">
+            <img src="{% static 'img/all.jpg' %}" alt="">
+            <h4>Hello World</h4>
+            <p class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+            <p>₹2000-₹5000</p>
+        </div>
+        <div class="more">
+            <img src="{% static 'img/all.jpg' %}" alt="">
+            <h4>Hello World</h4>
+            <p class="star"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></p>
+            <p>₹2000-₹5000</p>
+        </div> -->
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="{% static 'js/product.js' %}"></script>
+</body>
+</html>
+{% endblock %}

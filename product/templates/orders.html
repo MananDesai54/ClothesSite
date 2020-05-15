@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="{% static 'img/devs1.jpg' %}" type="image/jpg">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    <style>
+        .suc {
+            margin: 20px 0;
+        }
+        .success {
+            background: rgba(34, 140, 34,0.3);
+            margin: 25px;
+            padding: 10px;
+            border-radius: 20px;
+            padding: 10px 10px;
+            opacity: 1;
+            transition: opacity 0.4s ease-in-out;
+            width: 300px;
+            animation: anim 1s ease-in-out;
+        }
+        .success i {
+            padding: 0 10px;
+            text-align: right;
+            color: rgb(8, 129, 8);
+            opacity: 0;
+            /* transform-origin: 0 0; */
+            animation: fade-in 1s ease-in-out forwards;
+        }
+        
+        @keyframes anim {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+                transform: rotateY(180deg);
+            }
+            100% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+        <div class="orders-sec menusec">
+            <div class="suc">
+                {% for message in messages %}
+                    <span class="success">
+                        <span>{{message}}</span>
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                {% endfor %}
+            </div>
+            <div class="fullcart" style="display: flex; flex-direction:column !important;width:100% !important">
+                <div class="cart">
+                    <h2>Your Orders({{len1}})</h2>
+                    {% if orders == None %}
+                        <h2 style="color: red;">Currently no orders available.</h2>
+                        <a href="/shop" class="back back2"><i class="fas fa-long-arrow-alt-left"></i>Continue Shopping</a>
+                    {% else %}
+                        {% for order in orders %}
+                                <div class="items">
+                                    <img src="{{ order.imagepath }}" alt="img">
+                                    <div class="details">
+                                        <h3 class="name"><a href="#">{{order.product_name}}</a></h3>
+                                        <div class="specific">
+                                            <p><span class="price">Price</span> : ${{order.price}}</p>
+                                            <p><span class="price">Quantity</span> : {{order.quantity}}</p>
+                                        </div>
+                                        <div class="btns">
+                                            <button class="btn btn1" id="cancel"><a href="/shop/order/cancel/{{order.product_name}}">Cancel</a></button>
+                                            <button class="btn btn1" id="track"><a href="/shop/order/track/{{order.product_name}}">Track</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <script>
+                    let menu = document.querySelector('.menu');
+                    let nav = document.querySelector('.nav-section');
+                    let close = document.querySelector('.close');
+                    let n = document.querySelector('nav .d');
+                    let follow = document.querySelector('.follow');
+                    let nav_sec = document.querySelector('.nav-section-parent');
+
+
+                    console.log(close,menu,nav,n);
+                    menu.addEventListener('click',()=>{
+                        console.log('Show');
+                        nav.classList.add('nav-show');
+                        nav.classList.remove('nav-hide');
+                        menu.style.opacity = '0';
+                        nav_sec.classList.add('nav-section-parent-show');
+                    });
+                    close.addEventListener('click',()=> {
+                        console.log('Close');
+                        nav.classList.remove('nav-show');
+                        nav.classList.add('nav-hide');
+                        menu.style.opacity = '1';
+                        nav_sec.classList.remove('nav-section-parent-show');
+                    });
+                </script>
+</body>
+</html>
+{%endblock%}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        {% if products != None %}
+            <a href="/shop" class="back back1"><i class="fas fa-long-arrow-alt-left"></i> Continue Shopping</a>
+        {% endif %}
+        <div class="fullcart">
+            <div class="cart">
+                <h2>Get Free Shipping On Purchase above $50</h2>
+                <h2>Your Cart({{len}}) <i class="fas fa-shopping-cart"></i></h2>
+                {% if products == None %}
+                    <h2 style="color: red;">Your cart is currently empty.</h2>
+                    <a href="/shop" class="back back2"><i class="fas fa-long-arrow-alt-left"></i>Continue Shopping</a>
+                {% else %}
+                    {% for product in products %}
+                            <div class="items">
+                                <img src="{{ product.imagePath }}" alt="">
+                                <div class="details">
+                                    <h3 class="name"><a href="/shop/{{product.product_name}}">{{product.product_name}}</a></h3>
+                                    <div class="specific">
+                                        <p><span class="title">size</span> : Medium</p>
+                                        <p><span class="quantity"> Quantity</span> : <a href="/shop/minus1/{{product.product_name}}"><i class="fas fa-minus" id="minus"></i></a> {{product.quantity}}<a href="/shop/plus1/{{product.product_name}}"><i class="fas fa-plus" id="plus"></i></a> </p>
+                                        <p><span class="price">Price</span> : ${{product.price}}</p>
+                                    </div>
+                                    <div class="btns">
+                                        <button class="btn btn1" id="remove"><a href="/shop/remove/{{product.product_name}}">Remove</a></button>
+                                        <button class="btn btn1" id="edit"><a href="/shop/{{product.product_name}}">Edit</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="summary">
+                <h2 class="sum">Summary</h2>
+                <hr>
+                <div id="promo">
+                    <h3>Have Promocode ? <i class="fas fa-tags"></i></h3>
+                    <p>
+                        <i class="fas fa-times close close1"></i>
+                        <input type="text" name="promo" placeholder="Enter Promocode">
+                        <button class="btn btn2">Apply</button>
+                    </p>
+                </div>
+                <hr>
+                <div class="sutotal flex">
+                    <h3>Subtotal</h3>
+                    <p>${{total}}</p>
+                </div>
+                <hr>
+                <div class="shipping flex">
+                    <h3>Estimated Shipping and & Handling</h3>
+                    <p>$0</p>
+                </div>
+                <hr>
+                <div class="tax flex">
+                    <h3>Tax</h3>
+                    <p>Nill</p>
+                </div>
+                <hr>
+                <div class="total flex">
+                    <h2>Total</h2>
+                    <p>${{total}}</p>
+                </div>
+                <hr>
+                <button class="btn-check checkout"><a href="/checkout/">Checkout</a></button>
+                <p class="or"><i>Or</i></p>
+                <button class="btn-check paypal">Checkout with <i class="fab fa-paypal"></i></button>
+            </div>
+        </div>
+        <script src="{% static 'js/cart.js' %}"></script>
+    </body>
+    </html>
+{% endblock %}

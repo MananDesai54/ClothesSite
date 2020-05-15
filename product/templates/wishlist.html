@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+        <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        {% if products != None %}
+            <a href="/shop" class="back back1"><i class="fas fa-long-arrow-alt-left"></i> Continue Shopping</a>
+        {% endif %}
+        <div class="fullcart">
+            <div class="cart">
+                <h2>Your WishList({{len}}) <i class="fas fa-shopping-cart"></i></h2>
+                {% if products == None %}
+                    <h2 style="color: red;">Your WishList is currently empty.</h2>
+                    <a href="/shop" class="back back2"><i class="fas fa-long-arrow-alt-left"></i>Continue Shopping</a>
+                {% else %}
+                    {% for product in products %}
+                            <div class="items">
+                                <img src="{{ product.imagePath }}" alt="">
+                                <div class="details">
+                                    <h3 class="name"><a href="/shop/{{product.product_name}}">{{product.product_name}}</a></h3>
+                                    <div class="specific">
+                                        <p><span class="price">Price</span> : ${{product.price}}</p>
+                                    </div>
+                                    <div class="btns">
+                                        <button class="btn btn1" id="remove"><a href="/shop/wishlist/remove/{{product.product_name}}">Remove</a></button>
+                                        <button class="btn btn1" id="addtocart"><a href="/shop/cart/{{product.product_name}}">Add to Cart</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <script src="{% static 'js/home.js' %}"></script>
+    </body>
+    </html>
+{% endblock %}

@@ -1,0 +1,154 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/devs1.jpg' %}" type="image/jpg">
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="sidenav">
+        <div class="title">
+            <i class="fas fa-inbox"></i>
+            <h3>
+            Dashboard
+            </h3>
+        </div>
+        <div class="option">
+            <div class="dashboard opsec opsec1" id="dashboard">
+                <i class="fas fa-chart-line"></i>
+                <p>Add Product</p>
+                <span><i class="fas fa-arrow-circle-right"></i></span>
+            </div>
+            <div class="allproduct opsec opsec1" id="allproduct">
+                <i class="fas fa-tshirt active"></i>
+                <p>All Products</p>
+                <span><i class="fas fa-arrow-circle-right"></i></span>
+            </div>
+            <div class="orders opsec opsec1" id="orders">
+                <i class="fas fa-shopping-bag"></i>
+                <p>My Orders</p>
+                <span><i class="fas fa-arrow-circle-right"></i></span>
+            </div>
+            <div class="profile opsec" id="profile">
+                <i class="fas fa-user"></i>
+                <p><a href="/profile">My Profile</a></p>
+                <span><i class="fas fa-arrow-circle-right"></i></span>
+            </div>
+        </div>
+        <div class="username">
+            <div class="photo"><img src="{{user.profile.image.url}}" alt=""></div>
+            <p class="name">{{user.first_name|title}} {{user.last_name|title}}</p>
+        </div>
+    </div>
+    <div class="site">
+        <a href="/">View Site</a>
+    </div>
+    <section class="sec">
+        <div class="dashboard-sec menusec">
+            <div class="background">
+                <p>Welcome back, <b>{{user.first_name|upper}}</b></p>
+                <p>Hi {{user.first_name|title}}, this is your Admin Page</p>
+            </div>
+            <form class="addproduct" action="addproduct/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Add Product</h1>
+                <!-- <div class="input one">
+                    <input type="number" name="id" class="field id" id="id" placeholder="Product Id" required>
+                    <input type="text" name="productnum" class="field product" id="lastname" placeholder="Product Number" required>
+                </div>
+                <div class="input">
+                    <input type="text" name="productname" class="field productname" id="productname" placeholder="Product Name" required>
+                </div>
+                <div class="input one">
+                    <input type="text" name="catagory" class="field catagory" id="catagory" placeholder="Catagory" required>
+                    <input type="text" name="sub-catagory" class="field sub-cat" id="sub-cat" placeholder="Sub Catagory" required>
+                </div>
+                <div class="input one">
+                    <input type="number" name="stock" class="field stock" id="stock" placeholder="Stock" required>
+                    <input type="number" name="price" class="field price" id="price" placeholder="Price" required>
+                </div>
+                <div class="input">
+                    Image1 : <input type="file" name="image1" id="image" placeholder="Choose Image">
+                </div>
+                <div class="input">
+                    Image2 : <input type="file" name="image2" id="image" placeholder="Choose Image">
+                </div>
+                <div class="input">
+                    Image3 : <input type="file" name="image3" id="image" placeholder="Choose Image">
+                </div>
+                <div class="input">
+                    Image4 : <input type="file" name="image4" id="image" placeholder="Choose Image">
+                </div>
+                <div class="input">
+                    Image5 : <input type="file" name="image5" id="image" placeholder="Choose Image">
+                </div> -->
+                {{form|crispy}}
+                <button type="submit" class="button">Add Product</button>
+            </form>
+        </div>
+        <div class="allproduct-sec menusec activesec">
+            <div class="fullcart">
+                <div class="cart">
+                    <h2>Your Products({{len}})</h2>
+                    {% if products == None %}
+                        <h2 style="color: red;">Your WishList is currently empty.</h2>
+                        <a href="/shop" class="back back2"><i class="fas fa-long-arrow-alt-left"></i>Continue Shopping</a>
+                    {% else %}
+                        {% for product in products %}
+                                <div class="items">
+                                    <img src="{{ product.img1.url }}" alt="img">
+                                    <div class="details">
+                                        <h3 class="name"><a href="#">{{product.product_name}}</a></h3>
+                                        <div class="specific">
+                                            <p><span class="price">Price</span> : ${{product.price}}</p>
+                                        </div>
+                                        <div class="btns">
+                                            <button class="btn btn1" id="remove"><a href="/adminpanel/remove/{{product.product_name}}">Remove</a></button>
+                                            <button class="btn btn1" id="edit"><a href="/adminpanel/edit/{{product.product_name}}">Edit</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="orders-sec menusec">
+            <div class="fullcart">
+                <div class="cart">
+                    <h2>Your Orders({{len2}})</h2>
+                    {% if orders == None %}
+                        <h2 style="color: red;">Currently no orders available.</h2>
+                    {% else %}
+                        {% for order in orders %}
+                                <div class="items">
+                                    <img src="{{ order.imagepath }}" alt="img">
+                                    <div class="details">
+                                        <h3 class="name"><a href="#">{{order.product_name}}</a></h3>
+                                        <div class="specific">
+                                            <p><span class="price">Price</span> : ${{order.price}}</p>
+                                            <p><span class="price">Quantity</span> : {{order.quantity}}</p>
+                                        </div>
+                                        <div class="btns">
+                                            <button class="btn btn1" id="remove"><a href="/adminpanel/remove/{{product.product_name}}">Remove</a></button>
+                                            <button class="btn btn1" id="edit"><a href="/adminpanel/edit/{{product.product_name}}">Edit</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <script src="{% static 'js/admin.js' %}"></script>
+</body>
+</html>

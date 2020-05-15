@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}"">
+</head>
+<body>
+    <div class="detail">
+        <div class="shipping-detail">
+            <h1>The Fashion <span>Hub</span></h1>
+            <p class="path"><a href="#">Cart</a> &nbsp; > &nbsp; <span>Information</span> &nbsp; > &nbsp; Payment</p>
+            <form class="address" action="/checkout/detail/" method="POST">
+                {% csrf_token %}
+                <h3>Shipping address</h3>
+                <div class="inputs">
+                    <div class="input sec">
+                        <input type="text" name="first_name" id="first_name" value="{{user.first_name|title}}">
+                        <input type="text" name="last_name" id="last_name" value="{{user.last_name|title}}">
+                    </div>
+                    <div class="input">
+                        <div class="add">
+                            <label for="address">
+                                Address
+                            </label>
+                            <input type="text" name="address" placeholder="Address" id="address">
+                        </div>
+                    </div>
+                    <div class="input">
+                        <div class="add">
+                            <label for="sub-address">
+                                Apartment or street
+                            </label>
+                            <input type="text" name="sub-address" id="sub-address" placeholder="Apartment,street,etc.(optional)">
+                        </div>
+                    </div>
+                    <div class="input">
+                        <div class="add">
+                            <label for="city">
+                                City
+                            </label>
+                            <input type="text" name="city" id="city" placeholder="City">
+                        </div>
+                    </div>
+                    <div class="input sec">
+                        <div class="sel">
+                            <label for="country">
+                                Country
+                            </label>
+                            <select name="country" id="country">
+                                <option value="india">India</option>
+                                <option value="usa">USA</option>
+                                <option value="canada">Canada</option>
+                                <option value="england">England</option>
+                                <option value="=australia">Australia</option>
+                            </select>
+                        </div>
+                        <div class="sel">
+                            <label for="state">
+                                State
+                            </label>
+                            <select name="state" id="state">
+                                <option value="gujarat">Gujarat</option>
+                                <option value="maharastra">Maharastra</option>
+                                <option value="Karnatak">Karnatak</option>
+                            </select>
+                        </div>
+                        <div class="add1 add">
+                            <label for="pincode">
+                                Postal code
+                            </label>
+                            <input type="number" name="pincode" id="pincode" placeholder="Pincode">
+                        </div>
+                    </div>
+                </div>
+                <button class="button" type="submit">Place Order</button>
+            </form>
+        </div>
+        <div class="my-product">
+            {% for product in products %}
+                <div class="product sec1">
+                    <div class="photo">
+                        <img src="{{product.imagePath}}" alt="{{product.product_name}}" style="object-fit: cover;">
+                        <p>{{product.quantity}}</p>
+                    </div>
+                    <p class="sec2">{{product.product_name}}</p>
+                    <h3>${{product.price}}</h3>
+                </div>
+            {% endfor %}
+            <hr>
+            <div class="coupon sec1">
+                <div class="add2">
+                    <label for="coupon">
+                        Coupon
+                    </label>
+                    <input type="text" name="coupon" id="coupon" placeholder="Coupon">
+                </div>
+                <button class="btn1">Apply</button>
+            </div>
+            <hr>
+            <div class="subtotal">
+                <div class="sub sec1">
+                    <p>Subtotal</p>
+                    <h3>${{total}}</h3>
+                </div>
+                <div class="ship sec1">
+                    <p>Shipping</p>
+                    <h3>Free</h3>
+                </div>
+            </div>
+            <hr>
+            <div class="total sec1">
+                <p>Total</p>
+                <h2>${{total}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/checkout.js' %}"></script>
+</body>
+</html>

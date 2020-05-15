@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+</head>
+<body>
+    
+    <div class="secs">
+        <section class="sec1">
+            <div class="photo"><img src="{{user.profile.image.url}}" alt="Profile Picture" width="190" height="190"></div>
+            <h1>{{user.first_name|title}} {{user.last_name|title}}</h1>
+        </section>
+        <form action="./" method="POST" class="sec2" enctype="multipart/form-data">{% csrf_token %}
+            <div class="suc">
+                {% for message in messages %}
+                    <span class="success">
+                        <span>{{message}}</span>
+                        <i class="fas fa-check-circle"></i>
+                    </span>
+                {% endfor %}
+            </div>
+            <div class="input">
+                <span>Username :</span> <input type="text" value="{{user.username}}" disabled name="username"> 
+            </div>
+            <div class="input">
+                <span>Firstname :</span> <input type="text" value="{{user.first_name}}" disabled name="firstname">
+            </div>
+            <div class="input">
+                <span>Lastname :</span> <input type="text" value="{{user.last_name}}" disabled name="lastname">
+            </div>
+            <div class="input">
+                <span>Email :</span> <input type="email" value="{{user.email}}" disabled name="email"> 
+            </div>
+            <!-- <div class="input">
+                <span>Birthdate :</span>  <input type="text" value="{{user.profile.birthdate}}" disabled name="bday" id="bday"> 
+            </div> -->
+            <div class="input">
+                <span>Contact_number :</span> <input type="tel" value="{{user.profile.contact_number}}" disabled name="ph-no">
+            </div>
+            <div class="input1 pic">
+                 <span>Change Profile photo</span> : {{pic}}
+            </div>
+            <div class="b">
+                <a href="/" class="button1">Home</a>
+                <button class="button" id="update" type="button">Update</button>
+                <button class="button" id="save" type="submit" disabled>Save</button>
+            </div>
+        </form>
+    </div>
+    <script src="{% static 'js/profile.js' %}"></script>
+</body>
+</html>
+{% endblock %}

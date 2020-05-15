@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="shortcut icon" href="{% static 'img/devs1.jpg' %}" type="image/jpg">
+    <link rel="stylesheet" href="{% static 'fontawesome-free-5.11.2-web/css/all.css' %}">
+    <script src="https://kit.fontawesome.com/1b8ba3dee0.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="nav-section-parent">
+        <div class="nav-section nav-hide">
+            <div class="nav-intro">
+                <div><!--<i class="fas fa-bars"></i>--> <span>Menu</span></div>
+                <div class="close"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="profile">
+                {% if user.is_authenticated %}
+                    <div class="photo">
+                        <img src="{{user.profile.image.url}}" alt="">
+                    </div>
+                    <div class="about">
+                        <h3>{{user.username|upper}}</h3>
+                        <a href="/profile">See Profile</a>
+                        <div>
+                            <i class="fas fa-arrow-circle-right"></i>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="about">
+                    <h3><a href="login">Login to see Profile</a></h3>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="content">
+                <p><a href="/shop/cart">My Cart</a></p>
+                <p>Offers</p>
+                <p><a href="/shop/wishlist">WishList</a></p>
+                <p><a href="/shop/order/">My Orders</a></p>
+                <p>About Us</p>
+                <p>Contact Us</p>
+                <p>Help</p>
+            </div>
+        </div>
+    </div>
+    {% if user.is_authenticated %}
+        <div class="top anim">
+            <!-- <a href="#" class="logo"></a>
+            <p>The Fashion Hub</p> -->
+            <p>Hello, {{user.username|upper}}</p> 
+        </div>
+    {% endif %}
+    <div class="follow">
+        <a href="#" id="pinterest"><i class="fab fa-pinterest"></i></a>
+        <a href="#" id="mail"><i class="fas fa-envelope"></i></a>
+        <a href="#" id="whatsapp"><i class="fab fa-whatsapp"></i></a>
+        <a href="#" id="messenger"><i class="fab fa-facebook-messenger"></i></a>
+        <a href="#" id="linkedin"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" id="reddit"><i class="fab fa-reddit-alien"></i></a>
+    </div>
+    <nav>
+        <div class="menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div>
+            <a href="/">Home</a>
+            {% if user.is_authenticated %}
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/signup">Sign up</a>
+            {% endif %}
+            <a href="#"><i class="fas fa-search search1"></i></a>
+            {% if user.is_authenticated %}
+                <a href="/shop/cart">
+                    <i class="fas fa-shopping-cart cart1"> 
+                        <p>{{len}}</p>
+                    </i>
+                </a>
+            {% else %}
+                <a href="/login"><i class="fas fa-shopping-cart"></i></a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="search">
+        <form class="search-box" method="POST" action="/search/">
+            {% csrf_token %}
+            <input type="text" name="search" id="box" placeholder="Search">
+            <button class="search2" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="close-search">
+            <i class="fas fa-times"></i>
+        </div>
+
+    </div>
+    {% block content %}
+    {%endblock%}
+    <footer class="footer">
+            
+        <div class="help">
+            <input type="text" placeholder="What can we do..?">
+            <a href="mailto:manan5401desai@gmail.com?subject=Help"><i class="fas fa-search"></i></a>
+        </div>
+        <div class="social">
+            <!-- <h3>Follow US On</h3> -->
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <div class="parts">
+            <a href="#"><i class="fas fa-home"></i> Home</a>
+            <a href="#"><i class="fas fa-address-card"></i> About us</a>
+            <a href="">Contact us</a>
+            <a href="#">Term and conditions</a>
+            <a href="#">privacy Policy</a>
+        </div>
+    </footer>
+    <script src="https://kit.fontawesome.com/1b8ba3dee0.js" crossorigin="anonymous"></script>
+</body>
+</html>

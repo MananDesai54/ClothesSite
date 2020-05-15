@@ -1,0 +1,140 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="shortcut icon" href="{% static 'img/devs1.jpg' %}" type="image/jpg">
+    <style>
+        * {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .detail {
+            display: flex;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 50%;
+        }
+        .detail img {
+            height: 150px;
+            width: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .addproduct {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin: 10px auto;
+        }
+        .addproduct h1 {
+            text-align: center;
+            padding: 10px;
+            text-transform: uppercase;
+            background: linear-gradient(to left,#0F2259,#3258A6,#77ACF2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1em;
+        }
+        input {
+            padding: 1em 1em;
+            border: none;
+            border-radius: 20px;
+            width: 90%;
+            outline: none;
+            margin: 10px;
+            box-shadow: 0 0 2px rgba(0,0,0,0.5);
+            width: 50%;
+            display: block;
+            margin: 0 auto;
+            margin-top: -30px;
+            margin-bottom: 30px;
+        }
+        input[type='file'] {
+            margin-top: -10px !important;
+            margin-bottom: 0 !important;
+        }
+        .addproduct .button {
+            margin: 2em;
+            background: cadetblue;
+            padding: 1em;
+            border-radius: 30px;
+            color: white;
+            text-decoration: none;
+            margin:20px;
+            align-self: center;
+            border: none;
+            transition: transform 0.5s ease-in-out,
+                        box-shadow 0.6s ease-in-out,
+                        background 0.5s ease-in-out;
+            cursor: pointer;
+        }
+        .addproduct .button:hover {
+            box-shadow:  0 0 10px rgba(0, 0, 0, 0.5);
+            transform: scale(1.1);
+            background:#3258A6;
+            transition: transform 0.5s ease-in-out,
+                        box-shadow 0.6s ease-in-out,
+                        background 0.5s ease-in-out;
+        }
+        .d {
+            margin: 0 30px;
+        }
+        .msg {
+            width: 50%;
+            margin: 20px 20px 40px 0;
+            background: rgba(10, 121, 10, 0.2);
+            color: rgb(20, 182, 20);
+            border: 1px solid rgb(14, 128, 14);
+            border-radius: 5px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="detail">
+        <img src="{{product.img1.url}}" alt="">
+        <div class="d">
+            <h1>{{product.product_name}}</h1>
+        </div>
+    </div>
+    <form class="addproduct" action="/adminpanel/editpost/{{product.product_name}}/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h1>Edit Product</h1>
+        {% for message in messages %}
+            <h4 class="msg">{{message|title}}</h4>
+        {% endfor %}
+        <!-- <div class="input one">
+            <input type="number" name="id" class="field id" id="id" placeholder="Product Id" value="{{product.product_id}}" required>
+            <input type="text" name="productnum" class="field product" id="lastname" placeholder="Product Number" value="{{product.product_number}}" required>
+        </div>
+        <div class="input">
+            <input type="text" name="productname" class="field productname" id="productname" placeholder="Product Name" value="{{product.product_name}}">
+            <input type="text" name="companyname" class="field companyname" id="companyname" placeholder="Company Name" required value="{{product.company_name}}">
+        </div>
+        <div class="input one">
+            <input type="text" name="catagory" class="field catagory" id="catagory" placeholder="Catagory" required value="{{product.catagory}}">
+            <input type="text" name="sub-catagory" class="field sub-cat" id="sub-cat" placeholder="Sub Catagory" required value="{{product.sub_catagory}}">
+        </div>
+        <div class="input one">
+            <input type="number" name="stock" class="field stock" id="stock" placeholder="Stock" required value="{{product.stock}}">
+            <input type="number" name="price" class="field price" id="price" placeholder="Price" required value="{{product.price}}">
+        </div> -->
+        {{form|crispy}}
+        <button type="submit" class="button">Edit Product</button>
+    </form>
+</body>
+</html>
